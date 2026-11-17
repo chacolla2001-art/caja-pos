@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Caja · Punto de venta</title>
+<meta name="description" content="Punto de venta para tiendas pequeñas: ventas, stock, tickets y reporte del día. Funciona en el navegador.">
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+<header class="barra-superior">
+  <div class="marca"><i></i> Caja</div>
+  <nav class="pestanas" role="tablist" aria-label="Secciones">
+    <button role="tab" aria-selected="true" data-vista="vender">Vender</button>
+    <button role="tab" aria-selected="false" data-vista="ventas">Ventas</button>
+    <button role="tab" aria-selected="false" data-vista="productos">Productos</button>
+  </nav>
+  <span class="espacio"></span>
+  <span class="suave" id="reloj"></span>
+</header>
+
+<main>
+  <!-- Vender -->
+  <section id="vista-vender" class="vender">
+    <div class="catalogo">
+      <div class="fila">
+        <input id="buscar" type="search" placeholder="Buscar producto" aria-label="Buscar producto">
+        <div id="categorias" class="fila"></div>
+      </div>
+      <div id="rejilla" class="rejilla"></div>
+    </div>
+    <aside class="panel carrito" aria-label="Carrito">
+      <div class="titulo-panel">Venta actual</div>
+      <ul id="lineas" class="lineas"></ul>
+      <p id="vacio" class="suave">Toca un producto para agregarlo.</p>
+      <div class="resumen">
+        <label class="en-linea">Descuento % <input id="descuento" type="number" min="0" max="100" value="0"></label>
+        <div><span>Subtotal</span><b id="t-subtotal">Bs 0,00</b></div>
+        <div><span>Descuento</span><b id="t-descuento">Bs 0,00</b></div>
+        <div class="total"><span>Total</span><b id="t-total">Bs 0,00</b></div>
+      </div>
+      <div class="metodos" role="radiogroup" aria-label="Método de pago">
+        <button data-metodo="efectivo" aria-pressed="true">Efectivo</button>
+        <button data-metodo="qr" aria-pressed="false">QR</button>
+        <button data-metodo="tarjeta" aria-pressed="false">Tarjeta</button>
+      </div>
+      <label id="caja-pagado">Recibido (Bs) <input id="pagado" type="number" min="0" step="0.5" placeholder="0,00"></label>
+      <p id="t-cambio" class="cambio"></p>
+      <div class="fila">
+        <button id="vaciar" class="fantasma">Vaciar</button>
+        <button id="cobrar" class="principal" style="flex: 1">Cobrar</button>
+      </div>
+    </aside>
+  </section>
+
+  <!-- Ventas -->
+  <section id="vista-ventas" hidden>
+    <div class="kpis" id="kpis"></div>
+    <div class="dos-columnas">
+      <div class="panel">
+        <div class="titulo-panel">Ventas de hoy</div>
+        <table><thead><tr><th>N.º</th><th>Hora</th><th>Productos</th><th>Pago</th><th class="num">Total</th></tr></thead><tbody id="tabla-ventas"></tbody></table>
+        <div class="fila" style="margin-top: 12px"><button id="exportar">Exportar CSV</button></div>
+      </div>
+      <div class="panel">
+        <div class="titulo-panel">Más vendidos hoy</div>
+        <div id="mas-vendidos"></div>
+        <div class="titulo-panel" style="margin-top: 18px">Por reponer</div>
+        <div id="por-reponer"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Productos -->
+  <section id="vista-productos" hidden>
+    <div class="panel">
+      <div class="titulo-panel">Nuevo producto</div>
+      <form id="form-producto" class="fila">
+        <label>Nombre <input name="nombre" required></label>
+        <label>Categoría <input name="categoria" required list="lista-categorias"></label>
+        <label>Precio (Bs) <input name="precio" type="number" min="0" step="0.1" required style="width: 110px"></label>
+        <label>Stock <input name="stock" type="number" min="0" required style="width: 90px"></label>
+        <button class="principal">Agregar</button>
+      </form>
+      <datalist id="lista-categorias"></datalist>
+    </div>
+    <div class="panel" style="margin-top: 14px">
+      <div class="titulo-panel">Inventario</div>
+      <table><thead><tr><th>Producto</th><th>Categoría</th><th class="num">Precio</th><th class="num">Stock</th><th></th></tr></thead><tbody id="tabla-productos"></tbody></table>
+      <div class="fila" style="margin-top: 12px"><button id="reiniciar" class="fantasma">Restaurar datos de ejemplo</button></div>
+    </div>
+  </section>
+</main>
+
+<div class="modal" id="modal-ticket" hidden>
+  <div class="panel">
+    <div id="ticket" class="ticket"></div>
+    <div class="fila" style="margin-top: 14px">
+      <button id="imprimir">Imprimir</button>
+      <span class="espacio"></span>
+      <button id="cerrar-ticket" class="principal">Nueva venta</button>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="src/app.js"></script>
+</body>
+</html>

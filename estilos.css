@@ -1,0 +1,49 @@
+main { max-width: 1280px; margin: 0 auto; padding: 18px 20px 40px; }
+.vender { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 18px; align-items: start; }
+.catalogo { display: flex; flex-direction: column; gap: 14px; }
+#buscar { flex: 1 1 220px; }
+#categorias button { border-radius: 999px; padding: 5px 12px; font-size: .85rem; }
+#categorias button[aria-pressed='true'] { background: var(--acento); color: var(--sobre-acento); border-color: var(--acento); font-weight: 700; }
+.rejilla { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+.producto { text-align: left; padding: 0; overflow: hidden; background: var(--panel); border-radius: var(--radio); display: flex; flex-direction: column; }
+.producto:hover:not(:disabled) { box-shadow: 0 10px 26px color-mix(in srgb, var(--c, var(--acento)) 30%, transparent); border-color: var(--c, var(--acento)); }
+.producto .color { height: 58px; background: linear-gradient(135deg, var(--c), color-mix(in srgb, var(--c) 45%, #000)); display: grid; place-items: center; font-weight: 800; font-size: 1.35rem; color: rgba(255, 255, 255, .92); letter-spacing: 1px; }
+.producto .info { padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 2px; }
+.producto .nombre { font-weight: 600; }
+.producto .precio { font-weight: 800; color: var(--acento); font-variant-numeric: tabular-nums; }
+.producto small { color: var(--suave); }
+.producto.agotado { opacity: .45; }
+
+.carrito { position: sticky; top: 76px; display: flex; flex-direction: column; gap: 12px; }
+.lineas { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; max-height: 34vh; overflow: auto; }
+.lineas li { display: grid; grid-template-columns: 1fr auto auto; gap: 8px; align-items: center; background: var(--panel-2); border-radius: 10px; padding: 8px 10px; }
+.lineas .cant { display: flex; align-items: center; gap: 6px; }
+.lineas .cant button { width: 28px; height: 28px; padding: 0; border-radius: 8px; font-weight: 700; }
+.lineas b { font-variant-numeric: tabular-nums; }
+.resumen { display: flex; flex-direction: column; gap: 6px; border-top: 1px dashed var(--borde); padding-top: 10px; }
+.resumen > div { display: flex; justify-content: space-between; color: var(--suave); }
+.resumen > div b { color: var(--texto); font-variant-numeric: tabular-nums; }
+.resumen .total { font-size: 1.5rem; color: var(--texto); font-weight: 800; }
+.resumen .total b { background: linear-gradient(135deg, var(--acento), var(--acento-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+label.en-linea { flex-direction: row; align-items: center; justify-content: space-between; }
+label.en-linea input { width: 90px; text-align: right; }
+.metodos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.metodos button[aria-pressed='true'] { border-color: var(--acento); background: color-mix(in srgb, var(--acento) 18%, transparent); font-weight: 700; }
+.cambio { margin: 0; min-height: 1.4em; font-weight: 700; color: var(--acento); }
+.cambio.falta { color: var(--peligro); }
+#cobrar { padding: 12px; font-size: 1.05rem; }
+
+.dos-columnas { display: grid; grid-template-columns: 2fr 1fr; gap: 14px; margin-top: 14px; align-items: start; }
+.barra-h { display: grid; grid-template-columns: 1fr auto; gap: 4px 10px; margin-bottom: 10px; }
+.barra-h i { grid-column: 1 / -1; height: 8px; border-radius: 99px; background: var(--panel-2); overflow: hidden; display: block; }
+.barra-h i::after { content: ''; display: block; height: 100%; width: var(--p); background: linear-gradient(90deg, var(--acento), var(--acento-2)); border-radius: 99px; transition: width .6s cubic-bezier(.2, .8, .2, 1); }
+
+.ticket { font-family: 'Cascadia Mono', Consolas, monospace; font-size: .86rem; background: #fff; color: #111; padding: 16px; border-radius: 8px; }
+.ticket h3 { text-align: center; margin-bottom: 4px; }
+.ticket p { margin: 2px 0; text-align: center; }
+.ticket table td { border: 0; padding: 2px 0; }
+.ticket hr { border: 0; border-top: 1px dashed #999; margin: 8px 0; }
+.ticket .fuerte { font-weight: 800; font-size: 1.05rem; }
+
+@media (max-width: 900px) { .vender, .dos-columnas { grid-template-columns: 1fr; } .carrito { position: static; } }
+@media print { body * { visibility: hidden; } .ticket, .ticket * { visibility: visible; } .ticket { position: absolute; inset: 0 auto auto 0; width: 80mm; } }
