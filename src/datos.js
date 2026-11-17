@@ -1,7 +1,7 @@
 // Datos de ejemplo y guardado en el navegador (localStorage). Los precios van en centavos.
 const CLAVE = 'caja-pos-v1'
 
-const COLORES = { Bebidas: '#3b82f6', Panadería: '#f59e0b', Abarrotes: '#22c55e', Lácteos: '#a855f7', Limpieza: '#06b6d4', Snacks: '#ef4444' }
+const COLORES = { Bebidas: '#3b82f6', Panadería: '#d97706', Abarrotes: '#16a34a', Lácteos: '#7c3aed', Limpieza: '#0891b2', Snacks: '#dc2626' }
 export const colorDe = (categoria) => COLORES[categoria] ?? '#64748b'
 
 const p = (id, nombre, categoria, precio, stock) => ({ id, nombre, categoria, precio, stock })

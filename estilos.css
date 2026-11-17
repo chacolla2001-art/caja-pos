@@ -6,8 +6,9 @@ main { max-width: 1280px; margin: 0 auto; padding: 18px 20px 40px; }
 #categorias button[aria-pressed='true'] { background: var(--acento); color: var(--sobre-acento); border-color: var(--acento); font-weight: 700; }
 .rejilla { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
 .producto { text-align: left; padding: 0; overflow: hidden; background: var(--panel); border-radius: var(--radio); display: flex; flex-direction: column; }
-.producto:hover:not(:disabled) { box-shadow: 0 10px 26px color-mix(in srgb, var(--c, var(--acento)) 30%, transparent); border-color: var(--c, var(--acento)); }
-.producto .color { height: 58px; background: linear-gradient(135deg, var(--c), color-mix(in srgb, var(--c) 45%, #000)); display: grid; place-items: center; font-weight: 800; font-size: 1.35rem; color: rgba(255, 255, 255, .92); letter-spacing: 1px; }
+.producto:hover:not(:disabled) { box-shadow: var(--sombra); border-color: var(--acento); }
+/* Una franja fina con el color de la categoría; las iniciales ya no se muestran. */
+.producto .color { height: 4px; background: var(--c); font-size: 0; }
 .producto .info { padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 2px; }
 .producto .nombre { font-weight: 600; }
 .producto .precio { font-weight: 800; color: var(--acento); font-variant-numeric: tabular-nums; }
@@ -24,7 +25,7 @@ main { max-width: 1280px; margin: 0 auto; padding: 18px 20px 40px; }
 .resumen > div { display: flex; justify-content: space-between; color: var(--suave); }
 .resumen > div b { color: var(--texto); font-variant-numeric: tabular-nums; }
 .resumen .total { font-size: 1.5rem; color: var(--texto); font-weight: 800; }
-.resumen .total b { background: linear-gradient(135deg, var(--acento), var(--acento-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.resumen .total b { color: var(--acento); }
 label.en-linea { flex-direction: row; align-items: center; justify-content: space-between; }
 label.en-linea input { width: 90px; text-align: right; }
 .metodos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
@@ -36,7 +37,7 @@ label.en-linea input { width: 90px; text-align: right; }
 .dos-columnas { display: grid; grid-template-columns: 2fr 1fr; gap: 14px; margin-top: 14px; align-items: start; }
 .barra-h { display: grid; grid-template-columns: 1fr auto; gap: 4px 10px; margin-bottom: 10px; }
 .barra-h i { grid-column: 1 / -1; height: 8px; border-radius: 99px; background: var(--panel-2); overflow: hidden; display: block; }
-.barra-h i::after { content: ''; display: block; height: 100%; width: var(--p); background: linear-gradient(90deg, var(--acento), var(--acento-2)); border-radius: 99px; transition: width .6s cubic-bezier(.2, .8, .2, 1); }
+.barra-h i::after { content: ''; display: block; height: 100%; width: var(--p); background: var(--acento); border-radius: 99px; transition: width .6s cubic-bezier(.2, .8, .2, 1); }
 
 .ticket { font-family: 'Cascadia Mono', Consolas, monospace; font-size: .86rem; background: #fff; color: #111; padding: 16px; border-radius: 8px; }
 .ticket h3 { text-align: center; margin-bottom: 4px; }
